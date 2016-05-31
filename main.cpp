@@ -4,7 +4,7 @@ using namespace std;
 
 enum {
 	weekdays = 0,
-	hokiday,
+	holiday,
 };
 
 struct Price{
@@ -14,45 +14,45 @@ struct Price{
 
 
 void main(){
-	Price price[2];	//»ù¿ú³]©w(¥­¤é, °²¤é)
+	Price price[2];	//åƒ¹éŒ¢è¨­å®š(å¹³æ—¥, æ™šä¸Šå‡æ—¥)
 	price[weekdays].adult = 268;
 	price[weekdays].child = 120;
-	price[hokiday].adult = 368;
-	price[hokiday].child = 150;
-	int mode = 0;		//¬ö¿ı¥­¤é©Î°²¤é
-	int ahult = 0;		//¤j¤H©M¤p«Äªº¤H¼Æ
+	price[holiday].adult = 368;
+	price[holiday].child = 150;
+	int mode = 0;		//ç´€éŒ„å¹³æ—¥æˆ–æ™šä¸Šå‡æ—¥
+	int adult = 0;		//å¤§äººå’Œå°å­©çš„äººæ•¸
 	int child = 0;
-	cout << "¥­¤é:0 or °²¤é:1" << endl;
+	cout << "å¹³æ—¥ä¸­åˆ:0 or å¹³æ—¥æ™šé–“/å‡æ—¥:1" << endl;
 	cin >> mode;
-	cout << "½Ğ¿é¤J¤j¤H¤H¼Æ: ";
-	cin >> ahult;
-	cout << "½Ğ¿é¤J¤p«Ä¤H¼Æ: ";
+	cout << "è«‹è¼¸å…¥å¤§äººäººæ•¸: ";
+	cin >> adult;
+	cout << "è«‹è¼¸å…¥å°å­©äººæ•¸: ";
 	cin >> child;
 
-	int totalPeople = ahult + child;		//Á`¤H¼Æ
-	int free = totalPeople/3;				//§K¶O¤H¼Æ
+	int totalPeople = adult + child;		//ç¸½äººæ•¸
+	int free = totalPeople/3;				//å…è²»äººæ•¸
 
-	//¦©±¼§K¶Oªº¤H
+	//æ‰£æ‰å…è²»çš„äºº
 	if(free != 0){
 		if(child >= free){
-			child -= free;			//¤p«Ä§K¶O
+			child -= free;			//å°å­©å…è²»
 		}
 		else{
-			free -= child;			//´î±¼¤p«Äªº¤H¼Æ
+			free -= child;			//æ¸›æ‰å°å­©çš„äººæ•¸
 			child = 0;
-			ahult -=free;			//¦b´î±¼¤j¤H(³Ñ¤U¦h¤H¤H»İ­n¿ú)
+			adult -=free;			//åœ¨æ¸›æ‰å¤§äºº(å‰©ä¸‹å¤šäººäººéœ€è¦éŒ¢)
 		}
 	}
 
-	//­pºâ»ù¿ú
-	int total = (ahult * price[mode].adult) + (child * price[mode].child);
+	//è¨ˆç®—åƒ¹éŒ¢
+	int total =( (adult * price[mode].adult) + (child * price[mode].child))*1.1;
 
-	//¦pªG¦³¶W¹L10¤H¥H¤W¥´9.5§é
+	//å¦‚æœæœ‰è¶…é10äººä»¥ä¸Šæ‰“9.5æŠ˜
 	if(totalPeople >= 10){
 		total = total * 0.95;
 	}
 
-	cout << "Á`ª÷ÃB¬°: " << total << endl;
+	cout << "ç¸½é‡‘é¡ç‚º: " << total << endl;
 
 	system("pause");
 }
